@@ -1,0 +1,161 @@
+name: Create Release Archive
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload-archive:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Step 2: Install Node dependencies
+      - name: Install Node dependencies
+        run: npm ci
+
+      # Step 3: Run build
+      - name: Run npm build
+        run: npm run build
+
+      # Step 4: Install composer dependencies for production
+      - name: Composer install
+        run: composer install --no-dev --optimize-autoloader
+
+      # Step 6: Generate manifest.json and extract $VERSION
+      - name: Generate manifest.json
+        id: generate_manifest
+        run: |
+          MAIN_FILE=$(grep -rl "Plugin Name:" --include="*.php" . | head -n 1)
+          echo "Main plugin file: $MAIN_FILE"
+
+          parse_field() {
+            grep -i "$1:" "$MAIN_FILE" | head -n1 \
+              | sed -E "s/^\s*\*\s*//" \
+              | sed -E "s|$1:[[:space:]]*||i" \
+              | xargs
+          }
+
+          PLUGIN_NAME="$(parse_field 'Plugin Name')"
+          PLUGIN_URI="$(parse_field 'Plugin URI')"
+          DESCRIPTION="$(parse_field 'Description')"
+          AUTHOR="$(parse_field 'Author')"
+          AUTHOR_URI="$(parse_field 'Author URI')"
+          VERSION="$(parse_field 'Version')"
+          REQUIRES_PHP="$(parse_field 'Requires PHP')"
+          REQUIRES_WP="$(parse_field 'Requires at least')"
+          LICENSE="$(parse_field 'License')"
+          LICENSE_URI="$(parse_field 'License URI')"
+          TEXT_DOMAIN="$(parse_field 'Text Domain')"
+          DOMAIN_PATH="$(parse_field 'Domain Path')"
+          TESTED_UP_TO="$(parse_field 'Tested up to')"
+
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+          cat > manifest.json <<EOF
+          {
+            "plugin_name": "$PLUGIN_NAME",
+            "plugin_uri": "$PLUGIN_URI",
+            "description": "$DESCRIPTION",
+            "author": "$AUTHOR",
+            "author_uri": "$AUTHOR_URI",
+            "version": "$VERSION",
+            "requires_php": "$REQUIRES_PHP",
+            "requires_wp": "$REQUIRES_WP",
+            "license": "$LICENSE",
+            "license_uri": "$LICENSE_URI",
+            "text_domain": "$TEXT_DOMAIN",
+            "domain_path": "$DOMAIN_PATH",
+            "tested_up_to": "$TESTED_UP_TO"
+          }
+          EOF
+
+      # Step 7: Create custom zip archive
+      - name: Create custom archive
+        run: |
+          REPO_NAME=$(basename "$GITHUB_WORKSPACE")
+          PACKAGE_FILE="${REPO_NAME}.zip"
+
+          echo "Packaging $REPO_NAME version $VERSION"
+
+          # Create zip one level up to avoid nesting
+          cd ..
+          zip -r -D "$PACKAGE_FILE" "$REPO_NAME" -x@"$REPO_NAME/.zipignore"
+
+          # Move the zip back to workflow directory
+          mv "$PACKAGE_FILE" "$GITHUB_WORKSPACE/"
+
+          # Set environment variable for later steps
+          echo "PACKAGE_FILE=$PACKAGE_FILE" >> "$GITHUB_ENV"
+
+      # Step 8: Get last commit message (push events only)
+      - name: Get last commit message
+        if: github.event_name == 'push'
+        id: last_commit
+        run: |
+          LAST_COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
+          {
+            echo "LAST_COMMIT_MESSAGE<<EOF"
+            echo "$LAST_COMMIT_MESSAGE"
+            echo "EOF"
+          } >> $GITHUB_ENV
+
+      # Step 9: Ensure tag exists on remote (push events only)
+      - name: Ensure tag exists
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=v${{ env.VERSION }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Delete local tag if exists
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            git tag -d "$TAG"
+          fi
+
+          # Create or recreate tag
+          git tag "$TAG"
+
+          # Push tag to remote, force if it exists
+          git push --force https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git "$TAG"
+
+      # Step 10: Create GitHub release (push events only)
+      - name: Create GitHub release (push)
+        if: github.event_name == 'push'
+        id: create_release_push
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: Version ${{ env.VERSION }}
+          body: ${{ env.LAST_COMMIT_MESSAGE }}
+          files: |
+            ${{ env.PACKAGE_FILE }}
+            manifest.json
+          overwrite_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 11: Create GitHub release (release events only, optional safety check)
+      - name: Create GitHub release (release)
+        if: github.event_name == 'release' && github.event.release.target_commitish == 'main'
+        id: create_release_event
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          name: Release ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
+          files: |
+            ${{ env.PACKAGE_FILE }}
+            manifest.json
+          overwrite_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
