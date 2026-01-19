@@ -1,6 +1,6 @@
 {
-  "name": "zior-block-elements",
-  "repository": "https://github.com/ZIORWebDev/zior-block-elements.git",
+  "name": "zior-simpliblocks",
+  "repository": "https://github.com/ZIORWebDev/zior-simpliblocks.git",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
