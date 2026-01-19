@@ -8,7 +8,7 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Minimal WordPress blocks designed for simplicity and performance.
+A collection of simple, lightweight blocks focused on clarity and performance.
 
 == Description ==
 

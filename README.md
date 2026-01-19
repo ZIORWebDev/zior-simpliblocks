@@ -1,6 +1,6 @@
 # ZIOR SimpliBlocks
 
-Minimal, modular WordPress blocks focused on simplicity and performance.
+A collection of simple, lightweight blocks focused on clarity and performance.
 
 ZIOR SimpliBlocks is a lightweight WordPress plugin by **ZIORWeb.Dev** that adds a small set of clean, minimalist blocks to the WordPress block editor.
 
