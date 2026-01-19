@@ -1,20 +1,21 @@
-easy-file-uploader/.github/**
-easy-file-uploader/src/**
-easy-file-uploader/node_modules/**
-easy-file-uploader/.vscode/**
-easy-file-uploader/.git/**
+zior-simpliblocks/.github/**
+zior-simpliblocks/src/**
+zior-simpliblocks/node_modules/**
+zior-simpliblocks/.vscode/**
+zior-simpliblocks/.git/**
 
-easy-file-uploader/.gitignore
-easy-file-uploader/LICENSES.txt
-easy-file-uploader/README.md
-easy-file-uploader/.cursorrc.json
-easy-file-uploader/.gitattributes
+zior-simpliblocks/.gitignore
+zior-simpliblocks/LICENSES.txt
+zior-simpliblocks/README.md
+zior-simpliblocks/.cursorrc.json
+zior-simpliblocks/.gitattributes
 
-easy-file-uploader/*.lock
-easy-file-uploader/.prettierignore
-easy-file-uploader/.prettierrc
-easy-file-uploader/.zipignore
-easy-file-uploader/package.json
-easy-file-uploader/package-lock.json
+zior-simpliblocks/*.lock
+zior-simpliblocks/.prettierignore
+zior-simpliblocks/.prettierrc
+zior-simpliblocks/.zipignore
+zior-simpliblocks/package.json
+zior-simpliblocks/package-lock.json
+zior-simpliblocks/manifest.json
 
-easy-file-uploader/webpack.config.js
+zior-simpliblocks/webpack.config.js
