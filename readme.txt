@@ -1,6 +1,6 @@
 === ZIOR SimpliBlocks ===
 Contributors: ziorwebdev
-Tags: blocks, block editor, gutenberg blocks, minimalist, lightweight, performance
+Tags: meta field, icon picker, gutenberg blocks, minimalist, icon list
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
