@@ -41,11 +41,9 @@ Display dynamic post meta or custom field values directly inside the block edito
 * Developer-friendly and beginner-friendly
 * No unnecessary scripts or bloat
 
-== Documentation ==
+Visit <a href="https://ziorweb.dev/docs/zior-simpliblocks" target="_blank">documentation</a> for more information.
 
-For full documentation, usage examples, and more, visit:
 
-https://ziorweb.dev/docs/zior-simpliblocks
 
 == Installation ==
 
