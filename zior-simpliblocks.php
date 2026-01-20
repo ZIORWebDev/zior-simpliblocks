@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       ZIOR SimpliBlocks
- * Plugin URI:        https://ziorweb.dev/plugin/zior-block-elements
+ * Plugin URI:        https://ziorweb.dev/plugin/zior-simpliblocks
  * Description:       A collection of simple, lightweight blocks focused on clarity and performance.
  * Author:            ZIORWeb.Dev
  * Author URI:        https://ziorweb.dev
