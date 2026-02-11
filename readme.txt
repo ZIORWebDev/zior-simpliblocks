@@ -1,10 +1,10 @@
 === ZIOR SimpliBlocks ===
 Contributors: ziorwebdev
-Tags: blocks, block editor, gutenberg blocks, minimalist, lightweight, performance
+Tags: blocks, block editor, gutenberg blocks, minimalist, lightweight, performance, woocommerce
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.1.0
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,8 @@ No unnecessary features, no heavy styles, and no complex configuration — just 
 
 ZIOR SimpliBlocks is ideal for developers, designers, and content creators who want **fast-loading pages** and **full control** without bloat.
 
+Some blocks include optional WooCommerce integration for building custom product layouts using the block editor.
+
 == WordPress Blocks ==
 
 The following blocks are included:
@@ -32,12 +34,24 @@ Create clean, minimal icon lists for features, highlights, or content sections. 
 = Dynamic Meta Field =
 Display dynamic post meta or custom field values directly inside the block editor. Perfect for dynamic content and data-driven layouts.
 
+= WooCommerce Product Price =
+Display the product price dynamically using WooCommerce’s native pricing logic.  
+Supports simple, variable, sale, and subscription products (if available).
+
+= WooCommerce Product Rating =
+Display the WooCommerce product star rating with proper markup and accessibility support.
+
+= WooCommerce Product Add To Cart =
+Insert a dynamic Add to Cart button directly into the editor.  
+Supports specific product IDs or automatic detection in single product templates.
+
 == Key Features ==
 
 * Simple, minimalist block designs
 * Lightweight and performance-focused
 * Modular blocks — use only what you need
 * Works with any WordPress theme
+* WooCommerce integration for product layouts
 * Developer-friendly and beginner-friendly
 * No unnecessary scripts or bloat
 
@@ -58,6 +72,9 @@ https://ziorweb.dev/docs/zior-simpliblocks
 = Does this plugin work with any theme? =
 Yes. ZIOR SimpliBlocks is designed to work with any WordPress theme.
 
+= Do the WooCommerce blocks require WooCommerce? =
+Yes. WooCommerce must be installed and activated to use the product-related blocks.
+
 = Is this plugin beginner-friendly? =
 Yes. The blocks are simple to use and do not require technical knowledge.
 
@@ -69,6 +86,9 @@ No. The plugin focuses on minimalism and performance. Only essential scripts and
 1. Icon Picker block in the editor
 2. Icon List block example
 3. Dynamic Meta Field block in use
+4. WooCommerce Product Price block
+5. WooCommerce Product Rating block
+6. WooCommerce Product Add To Cart block
 
 == Changelog ==
 
@@ -76,6 +96,9 @@ No. The plugin focuses on minimalism and performance. Only essential scripts and
 * Added Icon Picker block
 * Added Icon List block
 * Added Dynamic Meta Field block
+* Added WooCommerce Product Price block
+* Added WooCommerce Product Rating block
+* Added WooCommerce Product Add To Cart block
 
 == License ==
 

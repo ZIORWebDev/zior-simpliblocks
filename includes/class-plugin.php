@@ -1,159 +1,115 @@
 <?php
 /**
- * Main plugin controller class for SimpliBlocks.
+ * Plugin bootstrap class for SimpliBlocks.
  *
- * This class bootstraps the plugin, loads dependencies, sets up internationalization,
- * and initializes core services including the plugin updater.
+ * This class is responsible for initializing the plugin by defining constants
+ * and loading core services. It does not maintain runtime state and therefore
+ * does not implement the singleton pattern.
  *
  * @package ZIORWebDev\SimpliBlocks
  */
 
 namespace ZIORWebDev\SimpliBlocks;
 
-use ZIORWebDev\WordPressBlocks;
+use ZIORWebDev\WordPressBlocks\Loader as BlocksLoader;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit();
+	exit;
 }
 
 /**
- * The core plugin class for SimpliBlocks.
+ * Main plugin bootstrap class.
  *
- * Responsible for defining core constants, loading dependencies, setting up localization,
- * and initializing the plugin loader and updater.
+ * Handles plugin initialization, constant definition, and service bootstrapping.
+ * All methods are static to avoid unnecessary global instances.
  *
- * Implements the singleton pattern to ensure only one instance is used.
- *
- * @package ZIORWebDev\SimpliBlocks.
+ * @since 1.0.0
  */
 final class Plugin {
 
 	/**
-	 * Path to the main plugin file.
-	 *
-	 * @var string
-	 */
-	protected $plugin_file;
-
-	/**
-	 * Name of the plugin.
-	 *
-	 * @var string
-	 */
-	protected $plugin_name = '';
-
-	/**
-	 * Singleton instance of the Plugin class.
-	 *
-	 * @var Plugin
-	 */
-	protected static $instance;
-
-	/**
-	 * Current version of the plugin.
-	 *
-	 * @var string
-	 */
-	protected $plugin_version = '';
-
-	/**
-	 * Class constructor.
-	 */
-	private function __construct( string $plugin_file ) {
-		$this->plugin_file = $plugin_file;
-	}
-
-	/**
 	 * Initialize the plugin.
 	 *
-	 * Sets up constants, includes required files, and initializes the plugin updater.
+	 * Defines core constants and boots required services.
+	 * This method should be called once from the main plugin file.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @param string $plugin_file Absolute path to the main plugin file.
 	 * @return void
 	 */
-	private function init(): void {
-		$this->setup_constants();
-		$this->include_classes();
+	public static function init( string $plugin_file ): void {
+		self::define_constants( $plugin_file );
+		self::init_services();
+	}
 
+	/**
+	 * Define plugin constants.
+	 *
+	 * Constants are only defined once to prevent redefinition errors.
+	 * These constants are used throughout the plugin.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $plugin_file Absolute path to the main plugin file.
+	 * @return void
+	 */
+	private static function define_constants( string $plugin_file ): void {
+		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_FILE', $plugin_file );
+		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_DIR', plugin_dir_path( $plugin_file ) );
+		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_URL', plugin_dir_url( $plugin_file ) );
+	}
+
+	/**
+	 * Boot core plugin services.
+	 *
+	 * Responsible for initializing external libraries, loaders,
+	 * and other core services required by the plugin.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	private static function init_services(): void {
+		( new BlocksLoader() )->init();
+	}
+
+	/**
+	 * Plugin activation callback.
+	 *
+	 * Fires a custom action that other components can hook into
+	 * to perform activation-related tasks.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public static function activate_plugin(): void {
 		/**
-		 * Load WordPress Blocks library.
+		 * Fires when the SimpliBlocks plugin is activated.
+		 *
+		 * @since 1.0.0
 		 */
-		WordPressBlocks\Load::get_instance();
-	}
-
-	/**
-	 * Include required plugin files.
-	 *
-	 * Loads configuration, core functions, loader class, and the updater helper.
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	private function include_classes(): void {
-		require_once ZIOR_SIMPLIBLOCKS_PLUGIN_DIR . 'vendor/autoload.php';
-	}
-
-	/**
-	 * Defines plugin constants used throughout the plugin.
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	private function setup_constants(): void {
-		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_DIR', plugin_dir_path( $this->plugin_file ) );
-		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_URL', plugin_dir_url( $this->plugin_file ) );
-		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_FILE', $this->plugin_file );
-		define( 'ZIOR_SIMPLIBLOCKS_PLUGIN_VERSION', $this->plugin_version );
-	}
-
-	/**
-	 * Get the singleton instance of the Plugin class.
-	 *
-	 * @param string $plugin_file
-	 * @return Plugin
-	 * @since 1.0.0
-	 */
-	public static function get_instance( string $plugin_file ): Plugin {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self( $plugin_file );
-			self::$instance->init();
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Load the plugin textdomain.
-	 *
-	 * @return void
-	 * @since 1.0.0
-	 */
-	public function load_textdomain(): void {
-		load_plugin_textdomain(
-			'zior-simpliblocks',
-			false,
-			ZIOR_SIMPLIBLOCKS_PLUGIN_DIR . '/languages/',
-		);
-	}
-
-	/**
-	 * Activate the plugin.
-	 *
-	 * @return void
-	 * @since 1.0.0
-	 */
-	public function activate_plugin(): void {
 		do_action( 'zior_simpliblocks_activation' );
 	}
 
 	/**
-	 * Deactivate the plugin.
+	 * Plugin deactivation callback.
+	 *
+	 * Fires a custom action that other components can hook into
+	 * to perform deactivation-related cleanup.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return void
-	 * @since 1.0.0
 	 */
-	public function deactivate_plugin(): void {
+	public static function deactivate_plugin(): void {
+		/**
+		 * Fires when the SimpliBlocks plugin is deactivated.
+		 *
+		 * @since 1.0.0
+		 */
 		do_action( 'zior_simpliblocks_deactivation' );
 	}
 }
