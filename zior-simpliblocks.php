@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       ZIOR SimpliBlocks
- * Plugin URI:        https://ziorweb.dev/plugin/zior-simpliblocks
+ * Plugin URI:        https://ziorweb.dev/plugin/zior-block-elements
  * Description:       A collection of simple, lightweight blocks focused on clarity and performance.
  * Author:            ZIORWeb.Dev
  * Author URI:        https://ziorweb.dev
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * License:           GPL-2.0-or-later
@@ -37,9 +37,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin.php';
 
-$plugin_instance = Plugin::get_instance( __FILE__ );
+Plugin::init( __FILE__ );
 
-register_activation_hook( __FILE__, array( $plugin_instance, 'activate_plugin' ) );
-register_deactivation_hook( __FILE__, array( $plugin_instance, 'deactivate_plugin' ) );
+register_activation_hook( __FILE__, array( Plugin::class, 'activate_plugin' ) );
+register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate_plugin' ) );
