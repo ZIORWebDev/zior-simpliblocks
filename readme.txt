@@ -1,6 +1,6 @@
 === ZIOR SimpliBlocks ===
 Contributors: ziorwebdev, reygcalantaol
-Tags: blocks, block editor, gutenberg blocks, minimalist, lightweight, performance, woocommerce
+Tags: blocks, block editor, minimalist, lightweight, woocommerce
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
