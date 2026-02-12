@@ -7,7 +7,6 @@ ZIOR SimpliBlocks is a lightweight WordPress plugin by **ZIORWeb.Dev** that adds
 The goal is simple:  
 No bloat, no complexity — just essential blocks that do one thing well.
 
----
 
 ## Features
 
@@ -18,7 +17,6 @@ No bloat, no complexity — just essential blocks that do one thing well.
 - Beginner-friendly and easy to use
 - No unnecessary scripts or heavy dependencies
 
----
 
 ## Included Blocks
 
@@ -32,7 +30,17 @@ Create clean, minimalist icon lists for features, highlights, or content section
 Display dynamic post meta or custom field values directly inside the block editor.  
 Ideal for dynamic and data-driven layouts.
 
----
+### WooCommerce Product Price
+Display the product price dynamically using WooCommerce’s native pricing logic.  
+Supports simple, variable, sale, and subscription products (if available).
+
+### WooCommerce Product Rating
+Display the WooCommerce product star rating with proper markup and accessibility support.
+
+### WooCommerce Product Add To Cart
+Insert a dynamic Add to Cart button directly into the editor.  
+Supports specific product IDs or automatic detection in single product templates.
+
 
 ## Installation
 
@@ -46,7 +54,6 @@ Ideal for dynamic and data-driven layouts.
 2. Upload the plugin folder to `/wp-content/plugins/zior-simpliblocks`
 3. Activate the plugin from the WordPress admin panel
 
----
 
 ## Documentation
 
@@ -54,7 +61,6 @@ Full documentation, usage guides, and examples are available at:
 
 https://ziorweb.dev/docs/zior-simpliblocks
 
----
 
 ## Philosophy
 
@@ -68,7 +74,6 @@ ZIOR SimpliBlocks follows a minimalist and atomic approach:
 
 This plugin is built for developers and creators who value clarity, performance, and long-term maintainability.
 
----
 
 ## Development
 

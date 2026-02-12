@@ -59,7 +59,7 @@ Supports specific product IDs or automatic detection in single product templates
 
 For full documentation, usage examples, and more, visit:
 
-https://ziorweb.dev/docs/zior-simpliblocks
+<a href="https://ziorweb.dev/docs/zior-simpliblocks" target="_blank>https://ziorweb.dev/docs/zior-simpliblocks</a>
 
 == Installation ==
 
@@ -92,13 +92,15 @@ No. The plugin focuses on minimalism and performance. Only essential scripts and
 
 == Changelog ==
 
-= 1.1.0 =
-* Added Icon Picker block
-* Added Icon List block
-* Added Dynamic Meta Field block
+= 1.0.2 =
 * Added WooCommerce Product Price block
 * Added WooCommerce Product Rating block
 * Added WooCommerce Product Add To Cart block
+
+= 1.0.1 =
+* Added Icon Picker block
+* Added Icon List block
+* Added Dynamic Meta Field block
 
 == License ==
 
