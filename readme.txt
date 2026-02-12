@@ -1,5 +1,5 @@
 === ZIOR SimpliBlocks ===
-Contributors: ziorwebdev
+Contributors: ziorwebdev, reygcalantaol
 Tags: blocks, block editor, gutenberg blocks, minimalist, lightweight, performance, woocommerce
 Requires at least: 6.0
 Tested up to: 6.9
@@ -59,7 +59,8 @@ Supports specific product IDs or automatic detection in single product templates
 
 For full documentation, usage examples, and more, visit:
 
-<a href="https://ziorweb.dev/docs/zior-simpliblocks" target="_blank>https://ziorweb.dev/docs/zior-simpliblocks</a>
+<a href="https://ziorweb.dev/docs/zior-simpliblocks" target="_blank">https://ziorweb.dev/docs/zior-simpliblocks</a>
+
 
 == Installation ==
 
