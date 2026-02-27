@@ -5,7 +5,7 @@
  * Description:       A collection of simple, lightweight blocks focused on clarity and performance.
  * Author:            ZIORWeb.Dev
  * Author URI:        https://ziorweb.dev
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * License:           GPL-2.0-or-later
