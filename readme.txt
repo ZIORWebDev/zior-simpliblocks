@@ -4,7 +4,7 @@ Tags: blocks, block editor, minimalist, lightweight, woocommerce
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,10 +93,13 @@ No. The plugin focuses on minimalism and performance. Only essential scripts and
 
 == Changelog ==
 
-= 1.0.2 =
+= 1.0.5 =
 * Added WooCommerce Product Price block
 * Added WooCommerce Product Rating block
 * Added WooCommerce Product Add To Cart block
+
+= 1.0.2 =
+* Improve meta-field, product-rating, and product-price blocks.
 
 = 1.0.1 =
 * Added Icon Picker block
