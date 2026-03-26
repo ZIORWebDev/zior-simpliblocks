@@ -1,5 +1,5 @@
 {
     "require": {
-        "ziorwebdev/wordpress-blocks": "^1.1"
+        "ziorwebdev/wordpress-blocks": "^1.2"
     }
 }

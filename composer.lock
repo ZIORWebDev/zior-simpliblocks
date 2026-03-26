@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb595b71ab6ca453f0a7a1e8d5117746",
+    "content-hash": "4f80444b676ebfeb3b465b7a6ecb1fca",
     "packages": [
         {
             "name": "pinkcrab/wp-psr16-cache",
@@ -118,16 +118,16 @@
         },
         {
             "name": "ziorwebdev/wordpress-blocks",
-            "version": "1.1.9",
+            "version": "1.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ZIORWebDev/wordpress-blocks.git",
-                "reference": "baa752ad8214a173551420b8fdd73e091ba7fe11"
+                "reference": "0d576c3df8da5e65811e5c4c9513bd543391fad0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ZIORWebDev/wordpress-blocks/zipball/baa752ad8214a173551420b8fdd73e091ba7fe11",
-                "reference": "baa752ad8214a173551420b8fdd73e091ba7fe11",
+                "url": "https://api.github.com/repos/ZIORWebDev/wordpress-blocks/zipball/0d576c3df8da5e65811e5c4c9513bd543391fad0",
+                "reference": "0d576c3df8da5e65811e5c4c9513bd543391fad0",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "description": "A collection of custom Gutenberg blocks designed to extend the WordPress block editor with icons, dynamic data, and flexible content composition.",
             "support": {
                 "issues": "https://github.com/ZIORWebDev/wordpress-blocks/issues",
-                "source": "https://github.com/ZIORWebDev/wordpress-blocks/tree/v1.1.9"
+                "source": "https://github.com/ZIORWebDev/wordpress-blocks/tree/v1.2.12"
             },
-            "time": "2026-02-27T14:15:53+00:00"
+            "time": "2026-03-26T04:02:52+00:00"
         }
     ],
     "packages-dev": [],
